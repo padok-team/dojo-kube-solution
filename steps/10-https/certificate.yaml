@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: example-com
+  namespace: default
+spec:
+  secretName: example-com-tls
+  issuerRef:
+    name: letsencrypt-staging
+  commonName: rocketchat.tycho.cloud
+  dnsNames:
+    - rocketchat.tycho.cloud
+    - www.rocketchat.tycho.cloud
+  acme:
+    config:
+      - http01:
+          ingress: nginx
+        domains:
+          - rocketchat.tycho.cloud
+          - www.rocketchat.tycho.cloud

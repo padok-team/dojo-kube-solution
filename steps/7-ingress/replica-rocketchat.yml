@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rocketchat
+  labels:
+    app: rocketchat-web
+spec:
+  # modify replicas according to your case
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rocketchat-web
+  template:
+    metadata:
+     labels:
+       app: rocketchat-web
+    spec:
+      containers:
+      - name: rocketchat-web
+        image: rocketchat/rocket.chat:latest
+        ports:
+        - name: http
+          containerPort: 3000
+        env:
+        - name: ROOT_URL
+          value: "http://0.0.0.0"
+        - name: MONGO_URL
+          value: "mongodb://rocketchat-database:27017/rocketchat"
+
