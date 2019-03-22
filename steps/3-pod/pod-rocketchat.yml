@@ -1,0 +1,18 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: rocketchat-web
+  labels:
+    app: rocketchat-web
+spec:
+  containers:
+  - name: rocketchat-web
+    image: rocketchat/rocket.chat:latest
+    ports:
+    - name: http
+      containerPort: 3000
+    env:
+    - name: ROOT_URL
+      value: "http://0.0.0.0"
+    - name: MONGO_URL
+      value: "mongodb://rocketchat-database:27017/rocketchat"

@@ -1,0 +1,21 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: rocketchat-database
+  labels:
+    app: rocketchat-database
+spec:
+  containers:
+  - name: rocketchat-database
+    image: mongo
+    command: ["/bin/sh", "-c"]
+    args: ["mongod --smallfiles --oplogSize 128 --bind_ip_all"]
+    ports:
+      - name: mongo
+        containerPort: 27017
+    volumeMounts:
+    - name: rocketchat-storage
+      mountPath: /data/db
+  volumes:
+  - name: rocketchat-storage
+    emptyDir: {}
