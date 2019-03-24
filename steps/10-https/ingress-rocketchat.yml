@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rocketchat-ingress
+spec:
+  tls:
+    - hosts:
+        - rocketchat.tycho.cloud
+        - www.rocketchat.tycho.cloud
+      secretName: rocketchat-production-tls
+  rules:
+    - host: rocketchat.tycho.cloud
+      http:
+        paths:
+          - backend:
+              serviceName: rocketchat-web
+              servicePort: 80
