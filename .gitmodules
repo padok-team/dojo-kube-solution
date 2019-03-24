@@ -1,0 +1,3 @@
+[submodule "steps/10-cloud-build/Rocket.Chat"]
+	path = steps/10-cloud-build/Rocket.Chat
+	url = git@github.com:tychota/Rocket.Chat.git
