@@ -12,6 +12,7 @@ spec:
     - host: rocketchat.tycho.cloud
       http:
         paths:
-          - backend:
+          - path: /
+            backend:
               serviceName: rocketchat-web
               servicePort: 80

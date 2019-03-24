@@ -12,18 +12,23 @@ spec:
       app: rocketchat-web
   template:
     metadata:
-     labels:
-       app: rocketchat-web
+      labels:
+        app: rocketchat-web
     spec:
       containers:
-      - name: rocketchat-web
-        image: rocketchat/rocket.chat:latest
-        ports:
-        - name: http
-          containerPort: 3000
-        env:
-        - name: ROOT_URL
-          value: "http://0.0.0.0"
-        - name: MONGO_URL
-          value: "mongodb://rocketchat-database:27017/rocketchat"
-
+        - name: rocketchat-web
+          image: rocketchat/rocket.chat:latest
+          ports:
+            - name: http
+              containerPort: 3000
+          env:
+            - name: ROOT_URL
+              value: "http://0.0.0.0"
+            - name: MONGO_URL
+              value: "mongodb://rocketchat-database:27017/rocketchat"
+          livenessProbe:
+            httpGet:
+              path: /api/info
+              port: http
+            initialDelaySeconds: 60
+            timeoutSeconds: 5

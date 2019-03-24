@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rocketchat-database
+spec:
+  selector:
+    app: rocketchat-database
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
